@@ -1,0 +1,342 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">	
+		<title>NERO Trader - Dashboard</title>
+		<link rel="shortcut icon" href="https://static.wixstatic.com/media/bf4509_cb65159c978642869dcacdec2971e36b%7Emv2.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/bf4509_cb65159c978642869dcacdec2971e36b%7Emv2.png" type="image/png">
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<style>
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    perspective: 1500px;
+}
+
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #f0564e;
+    color: #fff;
+    transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+    transform-origin: bottom left;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+    transform: rotateY(100deg);
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #242323;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+
+a.article, a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+#sidebarCollapse {
+    width: 40px;
+    height: 40px;
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+#sidebarCollapse span {
+    width: 80%;
+    height: 2px;
+    margin: 0 auto;
+    display: block;
+    background: #555;
+    transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
+    transition-delay: 0.2s;
+}
+
+#sidebarCollapse span:first-of-type {
+    transform: rotate(45deg) translate(2px, 2px);
+}
+#sidebarCollapse span:nth-of-type(2) {
+    opacity: 0;
+}
+#sidebarCollapse span:last-of-type {
+    transform: rotate(-45deg) translate(1px, -1px);
+}
+
+
+#sidebarCollapse.active span {
+    transform: none;
+    opacity: 1;
+    margin: 5px auto;
+}
+
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+        transform: rotateY(90deg);
+    }
+    #sidebar.active {
+        margin-left: 0;
+        transform: none;
+    }
+    #sidebarCollapse span:first-of-type,
+    #sidebarCollapse span:nth-of-type(2),
+    #sidebarCollapse span:last-of-type {
+        transform: none;
+        opacity: 1;
+        margin: 5px auto;
+    }
+    #sidebarCollapse.active span {
+        margin: 0 auto;
+    }
+    #sidebarCollapse.active span:first-of-type {
+        transform: rotate(45deg) translate(2px, 2px);
+    }
+    #sidebarCollapse.active span:nth-of-type(2) {
+        opacity: 0;
+    }
+    #sidebarCollapse.active span:last-of-type {
+        transform: rotate(-45deg) translate(1px, -1px);
+    }
+
+}
+	
+	.wrapper { overflow: hidden;}
+	
+		</style>
+	</head>
+	<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>NERO Trader</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <p>Dashboards Binary.com</p>
+                <li id="tab-link-inicio" class="active">
+                    <a href="#" onclick='f_inicio()'>Início</a>
+                </li>				
+                <li id="tab-link-under4">
+                    <a href="#" onclick='f_under4()'>Under4/Over5</a>
+                </li>
+                <li id="tab-link-parimpar">
+                    <a href="#" onclick='f_parimpar()'>Par/Impar</a>
+                </li>
+                <li>
+                    <a href="#">Contato</a>
+                </li>
+            </ul>
+        </nav>
+
+		
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+            
+				<div id="inicio">
+					<h4>Início</h4>
+					<p>Para usar o dashboar NERO Trader selecione o tipo de contrato no menu lateral e clique em Rodar.</p>
+				</div>
+			
+				<div class="row" id="controle" style="display:none;">
+					<div class="col-12 row">
+						<div class="col-12">
+							<h4 id="dash-title"></h4>
+						</div>
+						<div class="col-4">
+							<label>Selecione o índice</label>
+							<select class="form-control" id="contrato">
+								<option value="R_100">Volatility 100 Index</option>
+								<option value="1HZ100V">Volatility 100 (1s) Index</option>
+								<option value="R_75">Volatility 75 Index</option>
+								<option value="1HZ75V">Volatility 75 (1s) Index</option>
+								<option value="R_50">Volatility 50 Index</option>
+								<option value="1HZ50V">Volatility 50 (1s) Index</option>
+								<option value="R_25">Volatility 25 Index</option>
+								<option value="1HZ25V">Volatility 25 (1s) Index</option>
+								<option value="R_10">Volatility 10 Index</option>
+								<option value="1HZ10V">Volatility 10 (1s) Index</option>
+							</select>
+						</div>
+						<div class="col-4" style="display:none;" >
+							<select class="form-control" id="maxdigitos">
+								<option>25</option>
+							</select>
+						</div>
+						<div class="col-4">
+							<label style="height:24px;width:100%;"></label>
+							<button type="button" class="btn" onclick="rodar()"><i class="fa fa-play"></i> Rodar dashboard</button>					
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-12" id="graficos">
+					<div class="row">
+						<div class="col-12">
+							<div class="col-12"><h4><span id="titulografico"></span> <span id="cotacao" class="badge" style="vertical-align:top;"></h4></span></div>
+						</div>
+						<div class="col-12">
+							<div id="linhadotempo"></div>
+						</div>
+						<div class="col-6">
+							<div id="pizza_total"></div>
+						</div>
+						<div class="col-6">
+							<div id="pizza_ultimos"></div>
+						</div>
+						<div class="col-6">
+							<div id="coluna_total"></div>
+						</div>
+						<div class="col-6">
+							<div id="coluna_ultimos"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+	
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		
+		
+		<script type="text/javascript">
+			var n=['current','UMtSa','html','tick','jqTdp','Par/Impar','Cima','Under4/Over5','#contrato\x20:selected','ready','inicio','Ultimos\x2025','ultimosdigitos','linhadotempo','KTVuP','Meio','Nome1','draw','#tab-link-','under4','tipo','twzek','charts','#contrato','#cotacao','addClass','toFixed','data','parimpar','Inicio','toString','badge-danger','zqKjJ','Digito','active','QQqgA','coluna_total','100%','DataTable','Tipo','load','#sidebar','val','visualization','click','corechart','#pizza_ultimos','length','Fim','arrayToDataTable','badge-success','teste','badge-secondary','YNDUM','addRow','push','#inicio','toggleClass','hide','pizza_total','PieChart','removeClass','Ultimos\x20','#titulografico','quote','string','QgUvq','close','#FAFAFA','getElementById','KXiLr','#pizza_total','#coluna_ultimos','WFpKX','#dash-title','none','parse','#controle','#coluna_total','Impar','#linhadotempo','xZLMi','...','log','kOUTp','show','onmessage','timeline','Quantidade','Nome2','ColumnChart','#maxdigitos','li.active','charAt','#sidebarCollapse','UasxE','pizza_ultimos','addColumn','Baixo','dcPmy','Par','RUnoJ','shift','digitosanalizar','XcGbS','ultimacotacao'];(function(p,D){var K=function(u){while(--u){p['push'](p['shift']());}};K(++D);}(n,0x156));var p=function(I,T){I=I-0x0;var D=n[I];return D;};var f_inicio=function(){$(p('0x27'))[p('0x54')](''),$('#cotacao')[p('0x54')](''),$(p('0x38'))[p('0x54')](''),$(p('0x2f'))[p('0x54')](''),$(p('0x16'))[p('0x54')](''),$(p('0x36'))[p('0x54')](''),$(p('0x30'))['html']('');if(document['ws']){if(p('0x67')===p('0x4b')){function I(){var o=0x0,S=0x0;for(var W=0x0;W<document[p('0x5e')][p('0x17')];W++){var Y='',G=document[p('0x5e')][W];(G&0x1)==0x1?S++:o++;}var P=google[p('0x13')][p('0x19')]([[p('0xf'),'Quantidade'],['Par',o],[p('0x37'),S]]),O={'title':'','backgroundColor':p('0x2c')},b=new google[(p('0x13'))][(p('0x24'))](document[p('0x2d')]('pizza_total'));b[p('0x63')](P,O);}}else document['ws']['close']();}$('#controle')[p('0x22')](),$(p('0x20'))[p('0x3d')](),tab(p('0x5c'));},f_under4=function(){f_inicio(),$(p('0x20'))[p('0x22')](),$(p('0x35'))[p('0x3d')](),$(p('0x32'))['html'](p('0x59')),tab(p('0x65')),document[p('0x66')]=p('0x65');},f_parimpar=function(){f_inicio(),$('#inicio')[p('0x22')](),$(p('0x35'))[p('0x3d')](),$('#dash-title')[p('0x54')](p('0x57')),tab(p('0x4')),document[p('0x66')]=p('0x4');},tab=function(I){$(p('0x44'))['removeClass']('active'),$(p('0x64')+I)[p('0x1')](p('0xa'));};$(document)[p('0x5b')](function(){$(p('0x46'))['on'](p('0x14'),function(){if(p('0x8')!==p('0x8')){function I(){tipo=p('0x37');}}else $(p('0x11'))['toggleClass'](p('0xa')),$(this)[p('0x21')](p('0xa'));});}),google[p('0x68')][p('0x10')](p('0x52'),{'packages':[p('0x3f'),p('0x15')]});function under4_desenhaLinhaDoTempo(){var I=document[p('0x2d')](p('0x5f')),T=new google[(p('0x13'))]['Timeline'](I),D=new google[(p('0x13'))][(p('0xe'))]();D[p('0x49')]({'type':'string','id':'Nome1'}),D[p('0x49')]({'type':p('0x29'),'id':'Nome2'}),D[p('0x49')]({'type':'date','id':p('0x5')}),D[p('0x49')]({'type':'date','id':p('0x18')}),D[p('0x1e')]([p('0x58'),'-',new Date(0x0,0x0,0x0,0x0,0x0,0x0),new Date(0x0,0x0,0x0,0x0,0x0,0x1)]),D[p('0x1e')]([p('0x61'),'-',new Date(0x0,0x0,0x0,0x0,0x0,0x0),new Date(0x0,0x0,0x0,0x0,0x0,0x1)]),D[p('0x1e')](['Baixo','-',new Date(0x0,0x0,0x0,0x0,0x0,0x0),new Date(0x0,0x0,0x0,0x0,0x0,0x1)]);for(var K=0x0;K<document[p('0x5e')][p('0x17')];K++){var u='',V=document[p('0x5e')][K];if(V<0x4){if(p('0x1d')!==p('0x2e'))u=p('0x4a');else{function k(){meio++;}}}else{if(V==0x4||V==0x5){if(p('0x31')===p('0xb')){function o(){impar++;}}else u=p('0x61');}else V>0x5&&(u=p('0x58'));}D[p('0x1e')]([u,V[p('0x6')](),new Date(0x0,0x0,0x0,0x0,0x0,K+0x1),new Date(0x0,0x0,0x0,0x0,0x0,K+0x2)]);}var Q={'title':'','timeline':{'colorByRowLabel':!![]},'tooltip':{'trigger':p('0x33')},'enableInteractivity':![],'chartArea':{'left':0xa,'top':0x14,'width':'100%','height':'100%'},'backgroundColor':p('0x2c')};T[p('0x63')](D,Q);};function under4_desenhaPizzaTotal(){var I=0x0,T=0x0,D=0x0;for(var K=0x0;K<document[p('0x5e')]['length'];K++){var u='',V=document[p('0x5e')][K];if(V<0x4)D++;else{if(V==0x4||V==0x5)T++;else{if(V>0x5){if(p('0x56')!==p('0x56')){function S(){var W='',Y=document[p('0x5e')][K];(Y&0x1)==0x1?impar++:par++;}}else I++;}}}}var Q=google[p('0x13')]['arrayToDataTable']([[p('0xf'),'Quantidade'],[p('0x58'),I],[p('0x61'),T],[p('0x4a'),D]]),k={'title':p('0x5d'),'chartArea':{'left':0xa,'top':0x14,'width':p('0xd'),'height':'100%'},'backgroundColor':'#FAFAFA'},o=new google['visualization'][(p('0x24'))](document[p('0x2d')]('pizza_total'));o[p('0x63')](Q,k);};function under4_desenhaPizzaUltimos(){var I=0xa,T=0x0,D=0x0,K=0x0,u=document[p('0x5e')]['length']>=I?document[p('0x5e')]['length']-I-0x1:0x0;for(var V=u;V<document[p('0x5e')]['length'];V++){var Q='',k=document[p('0x5e')][V];if(k<0x4)K++;else{if(k==0x4||k==0x5)D++;else k>0x5&&T++;}}var o=google[p('0x13')][p('0x19')]([[p('0xf'),p('0x40')],['Cima',T],[p('0x61'),D],[p('0x4a'),K]]),S={'title':p('0x26')+I,'chartArea':{'left':0xa,'top':0x14,'width':p('0xd'),'height':p('0xd')},'backgroundColor':'#FAFAFA'},W=new google[(p('0x13'))][(p('0x24'))](document[p('0x2d')](p('0x48')));W['draw'](o,S);};function under4_desenhaColunaTotal(){q=[0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0];var I=0x0;for(var T=0x0;T<document['ultimosdigitos'][p('0x17')];T++){if(p('0x50')===p('0x60')){function Q(){baixo++;}}else{var D=document[p('0x5e')][T];q[D]++,I++;}}for(var T=0x0;T<=0x9;T++)q[T]=q[T]/I*0x64;var K=google[p('0x13')][p('0x19')]([['Digito',p('0x40')],['0',q[0x0]],['1',q[0x1]],['2',q[0x2]],['3',q[0x3]],['4',q[0x4]],['5',q[0x5]],['6',q[0x6]],['7',q[0x7]],['8',q[0x8]],['9',q[0x9]]]),u={'title':p('0x5d'),'legend':{'position':'none'},'backgroundColor':p('0x2c')},V=new google[(p('0x13'))][(p('0x42'))](document[p('0x2d')](p('0xc')));V[p('0x63')](K,u);};function under4_desenhaColunaUltimos(){var I=0xa;q=[0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0];var T=0x0,D=document['ultimosdigitos'][p('0x17')]>=I?document[p('0x5e')][p('0x17')]-I-0x1:0x0;for(var K=D;K<document[p('0x5e')][p('0x17')];K++){var u=document[p('0x5e')][K];q[u]++,T++;}for(var K=0x0;K<=0x9;K++)q[K]=q[K]/T*0x64;var V=google[p('0x13')][p('0x19')]([[p('0x9'),p('0x40')],['0',q[0x0]],['1',q[0x1]],['2',q[0x2]],['3',q[0x3]],['4',q[0x4]],['5',q[0x5]],['6',q[0x6]],['7',q[0x7]],['8',q[0x8]],['9',q[0x9]]]),Q={'title':'Ultimos\x20'+I,'legend':{'position':p('0x33')},'backgroundColor':p('0x2c')},k=new google[(p('0x13'))]['ColumnChart'](document[p('0x2d')]('coluna_ultimos'));k[p('0x63')](V,Q);};function parimpar_desenhaLinhaDoTempo(){var I=document[p('0x2d')]('linhadotempo'),T=new google[(p('0x13'))]['Timeline'](I),D=new google[(p('0x13'))]['DataTable']();D[p('0x49')]({'type':p('0x29'),'id':p('0x62')}),D[p('0x49')]({'type':'string','id':p('0x41')}),D['addColumn']({'type':'date','id':'Inicio'}),D[p('0x49')]({'type':'date','id':p('0x18')}),D[p('0x1e')]([p('0x4c'),'-',new Date(0x0,0x0,0x0,0x0,0x0,0x0),new Date(0x0,0x0,0x0,0x0,0x0,0x1)]),D[p('0x1e')]([p('0x37'),'-',new Date(0x0,0x0,0x0,0x0,0x0,0x0),new Date(0x0,0x0,0x0,0x0,0x0,0x1)]);for(var K=0x0;K<document[p('0x5e')][p('0x17')];K++){if(p('0x47')===p('0x53')){function k(){var o='',S=document[p('0x5e')][K];if(S<0x4)baixo++;else{if(S==0x4||S==0x5)meio++;else S>0x5&&cima++;}}}else{var u='',V=document['ultimosdigitos'][K];if((V&0x1)==0x1)u='Impar';else{if(p('0x39')!=='IjocS')u='Par';else{function o(){u=p('0x4c');}}}D[p('0x1e')]([u,V[p('0x6')](),new Date(0x0,0x0,0x0,0x0,0x0,K+0x1),new Date(0x0,0x0,0x0,0x0,0x0,K+0x2)]);}}var Q={'title':p('0x1b'),'timeline':{'colorByRowLabel':!![]},'tooltip':{'trigger':'none'},'enableInteractivity':![],'backgroundColor':'#FAFAFA'};T['draw'](D,Q);};function parimpar_desenhaPizza(){var I=0x0,T=0x0;for(var D=0x0;D<document[p('0x5e')][p('0x17')];D++){var K='',u=document[p('0x5e')][D];(u&0x1)==0x1?T++:I++;}var V=google[p('0x13')][p('0x19')]([[p('0xf'),p('0x40')],[p('0x4c'),I],[p('0x37'),T]]),Q={'title':'','backgroundColor':p('0x2c')},k=new google['visualization'][(p('0x24'))](document[p('0x2d')](p('0x23')));k['draw'](V,Q);};function rodar(){var I=document[p('0x66')];$(p('0x35'))[p('0x22')]();var T=$(p('0x69'))[p('0x12')](),D=$(p('0x5a'))['text'](),K=parseInt($(p('0x43'))[p('0x12')]());$(p('0x27'))[p('0x54')](D),document[p('0x4f')]=K,document[p('0x5e')]=[],document['ws']=new WebSocket('wss://ws.binaryws.com/websockets/v3?app_id=1089'),console[p('0x3b')](p('0x3a')),document['ws']['onopen']=function(u){if(p('0x3c')==='kOUTp')document['ws']['send'](JSON['stringify']({'ticks':T}));else{function V(){f_inicio(),$('#inicio')[p('0x22')](),$(p('0x35'))[p('0x3d')](),$(p('0x32'))[p('0x54')](p('0x59')),tab(p('0x65')),document[p('0x66')]='under4';}}},document['ws'][p('0x3e')]=function(u){var V=JSON[p('0x34')](u[p('0x3')]),Q=-0x1;if(V&&V[p('0x55')]){var k=V[p('0x55')][p('0x28')],o=k['toFixed'](0x2)[p('0x6')]();Q=parseInt(o[p('0x45')](o[p('0x17')]-0x1));var S=p('0x1c');if(document['ultimacotacao']){if(p('0x2a')===p('0x2a')){if(k>document[p('0x51')])S=p('0x1a');else{if(k<document[p('0x51')])S='badge-danger';}}else{function W(){q=[0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0];var Y=0x0;for(var G=0x0;G<document[p('0x5e')][p('0x17')];G++){var P=document[p('0x5e')][G];q[P]++,Y++;}for(var G=0x0;G<=0x9;G++)q[G]=q[G]/Y*0x64;var O=google[p('0x13')]['arrayToDataTable']([[p('0x9'),p('0x40')],['0',q[0x0]],['1',q[0x1]],['2',q[0x2]],['3',q[0x3]],['4',q[0x4]],['5',q[0x5]],['6',q[0x6]],['7',q[0x7]],['8',q[0x8]],['9',q[0x9]]]),b={'title':'Ultimos\x2025','legend':{'position':p('0x33')},'backgroundColor':p('0x2c')},M=new google[(p('0x13'))][(p('0x42'))](document[p('0x2d')](p('0xc')));M['draw'](O,b);}}}$('#cotacao')[p('0x54')](k[p('0x2')](0x2)['toString']()),$(p('0x0'))[p('0x25')](p('0x1c'))[p('0x25')](p('0x1a'))['removeClass'](p('0x7')),$(p('0x0'))[p('0x1')](S),document[p('0x51')]=k;}if(document[p('0x5e')]['length']>=document[p('0x4f')])document['ultimosdigitos'][p('0x4e')]();document[p('0x5e')][p('0x1f')](Q);if(I==p('0x65'))under4_desenhaLinhaDoTempo(),under4_desenhaPizzaTotal(),under4_desenhaPizzaUltimos(),under4_desenhaColunaTotal(),under4_desenhaColunaUltimos();else{if(I==p('0x4')){if(p('0x4d')===p('0x4d'))parimpar_desenhaLinhaDoTempo(),parimpar_desenhaPizza(),under4_desenhaColunaTotal(),under4_desenhaColunaUltimos();else{function Y(){document['ws'][p('0x2b')]();}}}}};};
+		</script>
+	</body>
+</html>
