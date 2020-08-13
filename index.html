@@ -1,0 +1,692 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">	
+		<title>NERO Trader - Dashboard</title>
+		<link rel="shortcut icon" href="https://static.wixstatic.com/media/bf4509_cb65159c978642869dcacdec2971e36b%7Emv2.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/bf4509_cb65159c978642869dcacdec2971e36b%7Emv2.png" type="image/png">
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<!--https://bootstrapious.com/tutorial/sidebar/index5.html-->
+		<style>
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    perspective: 1500px;
+}
+
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #f0564e;
+    color: #fff;
+    transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+    transform-origin: bottom left;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+    transform: rotateY(100deg);
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #242323;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+
+a.article, a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+#sidebarCollapse {
+    width: 40px;
+    height: 40px;
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+#sidebarCollapse span {
+    width: 80%;
+    height: 2px;
+    margin: 0 auto;
+    display: block;
+    background: #555;
+    transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
+    transition-delay: 0.2s;
+}
+
+#sidebarCollapse span:first-of-type {
+    transform: rotate(45deg) translate(2px, 2px);
+}
+#sidebarCollapse span:nth-of-type(2) {
+    opacity: 0;
+}
+#sidebarCollapse span:last-of-type {
+    transform: rotate(-45deg) translate(1px, -1px);
+}
+
+
+#sidebarCollapse.active span {
+    transform: none;
+    opacity: 1;
+    margin: 5px auto;
+}
+
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+        transform: rotateY(90deg);
+    }
+    #sidebar.active {
+        margin-left: 0;
+        transform: none;
+    }
+    #sidebarCollapse span:first-of-type,
+    #sidebarCollapse span:nth-of-type(2),
+    #sidebarCollapse span:last-of-type {
+        transform: none;
+        opacity: 1;
+        margin: 5px auto;
+    }
+    #sidebarCollapse.active span {
+        margin: 0 auto;
+    }
+    #sidebarCollapse.active span:first-of-type {
+        transform: rotate(45deg) translate(2px, 2px);
+    }
+    #sidebarCollapse.active span:nth-of-type(2) {
+        opacity: 0;
+    }
+    #sidebarCollapse.active span:last-of-type {
+        transform: rotate(-45deg) translate(1px, -1px);
+    }
+
+}
+	
+	.wrapper { overflow: hidden;}
+	
+		</style>
+	</head>
+	<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>NERO Trader</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <p>Dashboards Binary.com</p>
+                <li id="tab-link-inicio" class="active">
+                    <a href="#" onclick='f_inicio()'>Início</a>
+                </li>				
+                <li id="tab-link-under4">
+                    <a href="#" onclick='f_under4()'>Under4/Over5</a>
+                </li>
+                <li id="tab-link-parimpar">
+                    <a href="#" onclick='f_parimpar()'>Par/Impar</a>
+                </li>
+                <li>
+                    <a href="#">Contato</a>
+                </li>
+            </ul>
+        </nav>
+
+		
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+            
+				<div id="inicio">
+					<h4>Início</h4>
+					<p>Para usar o dashboar NERO Trader selecione o tipo de contrato no menu lateral e clique em Rodar.</p>
+				</div>
+			
+				<div class="row" id="controle" style="display:none;">
+					<div class="col-12 row">
+						<div class="col-12">
+							<h4 id="dash-title"></h4>
+						</div>
+						<div class="col-4">
+							<label>Selecione o índice</label>
+							<select class="form-control" id="contrato">
+								<option value="R_100">Volatility 100 Index</option>
+								<option value="1HZ100V">Volatility 100 (1s) Index</option>
+								<option value="R_75">Volatility 75 Index</option>
+								<option value="1HZ75V">Volatility 75 (1s) Index</option>
+								<option value="R_50">Volatility 50 Index</option>
+								<option value="1HZ50V">Volatility 50 (1s) Index</option>
+								<option value="R_25">Volatility 25 Index</option>
+								<option value="1HZ25V">Volatility 25 (1s) Index</option>
+								<option value="R_10">Volatility 10 Index</option>
+								<option value="1HZ10V">Volatility 10 (1s) Index</option>
+							</select>
+						</div>
+						<div class="col-4" style="display:none;" >
+							<select class="form-control" id="maxdigitos">
+								<option>25</option>
+							</select>
+						</div>
+						<div class="col-4">
+							<label style="height:24px;width:100%;"></label>
+							<button type="button" class="btn" onclick="rodar()"><i class="fa fa-play"></i> Rodar dashboard</button>					
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-12" id="graficos">
+					<div class="row">
+						<div class="col-12">
+							<div class="col-12"><h4><span id="titulografico"></span> <span id="cotacao" class="badge" style="vertical-align:top;"></h4></span></div>
+						</div>
+						<div class="col-12">
+							<div id="linhadotempo"></div>
+						</div>
+						<div class="col-6">
+							<div id="pizza_total"></div>
+						</div>
+						<div class="col-6">
+							<div id="pizza_ultimos"></div>
+						</div>
+						<div class="col-6">
+							<div id="coluna_total"></div>
+						</div>
+						<div class="col-6">
+							<div id="coluna_ultimos"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+	
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+
+		var f_inicio = function() {
+			$('#titulografico').html('');
+			$('#cotacao').html('');
+			$('#linhadotempo').html('');
+			$('#pizza_total').html('');
+			$('#pizza_ultimos').html('');
+			$('#coluna_total').html('');
+			$('#coluna_ultimos').html('');
+			if (document.ws) {
+				document.ws.close();
+			}
+			$('#controle').hide();
+			$('#inicio').show();
+			tab('inicio');
+		};
+		
+		var f_under4 = function() {
+			f_inicio();
+			$('#inicio').hide();
+			$('#controle').show();
+			$('#dash-title').html('Under4/Over5');
+			tab('under4');
+			document.tipo = 'under4';
+		};
+		
+		var f_parimpar = function() {
+			f_inicio();
+			$('#inicio').hide();
+			$('#controle').show();
+			$('#dash-title').html('Par/Impar');
+			tab('parimpar');
+			document.tipo = 'parimpar';
+		};
+		
+		var tab = function(tabn) {
+			$('li.active').removeClass('active');
+			$('#tab-link-'+tabn).addClass('active');
+		};
+		
+		
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+        $(this).toggleClass('active');
+    });
+});		
+		
+			google.charts.load("current", {packages:["timeline","corechart"]});
+			
+			function under4_desenhaLinhaDoTempo() {
+				var container = document.getElementById('linhadotempo');
+				var chart = new google.visualization.Timeline(container);
+				var dataTable = new google.visualization.DataTable();
+				dataTable.addColumn({ type: 'string', id: 'Nome1' });
+				dataTable.addColumn({ type: 'string', id: 'Nome2' });
+				dataTable.addColumn({ type: 'date', id: 'Inicio' });
+				dataTable.addColumn({ type: 'date', id: 'Fim' });
+
+				//para inicializar corretamente:
+				dataTable.addRow([ 'Cima',  '-',    new Date(0,0,0,0,0,0),  new Date(0,0,0,0,0,1) ]);
+				dataTable.addRow([ 'Meio',  '-',    new Date(0,0,0,0,0,0),  new Date(0,0,0,0,0,1) ]);
+				dataTable.addRow([ 'Baixo',  '-',    new Date(0,0,0,0,0,0),  new Date(0,0,0,0,0,1) ]);
+				
+				for(var i =0; i < document.ultimosdigitos.length; i++) {
+					var tipo = '';
+					var digito = document.ultimosdigitos[i];
+					if (digito < 4) {
+						tipo = 'Baixo';
+					} else if (digito == 4 || digito == 5) {
+						tipo = 'Meio';
+					} else if (digito > 5) {
+						tipo = 'Cima';
+					}
+					dataTable.addRow([ tipo,  digito.toString(),    new Date(0,0,0,0,0,i+1),  new Date(0,0,0,0,0,i+2) ]);
+				}
+							
+				var options = {
+					title:'',
+					timeline: { colorByRowLabel: true  },
+					tooltip: {trigger:'none'},
+					enableInteractivity:false,
+					chartArea:{left:10,top:20, width:"100%",height:"100%"},
+					backgroundColor: '#FAFAFA'
+				};
+
+				chart.draw(dataTable, options);
+				
+			};
+			
+			function under4_desenhaPizzaTotal() {
+				var cima=0;
+				var meio=0;
+				var baixo=0;
+				for(var i =0; i < document.ultimosdigitos.length; i++) {
+					var tipo = '';
+					var digito = document.ultimosdigitos[i];
+					if (digito < 4) {
+						baixo++;
+					} else if (digito == 4 || digito == 5) {
+						meio++;
+					} else if (digito > 5) {
+						cima++;
+					}
+				}			
+			
+				var data = google.visualization.arrayToDataTable([
+					['Tipo', 'Quantidade'],
+					['Cima',     cima],
+					['Meio',      meio],
+					['Baixo',  baixo],
+				]);
+
+				var options = {
+					title: 'Ultimos 25',
+					chartArea:{left:10,top:20,width:"100%",height:"100%"},
+					backgroundColor: '#FAFAFA'
+				};
+				
+				var chart = new google.visualization.PieChart(document.getElementById('pizza_total'));
+				chart.draw(data, options);
+				
+			};
+			
+			function under4_desenhaPizzaUltimos() {
+				var qtdigitos = 10;
+				var cima=0;
+				var meio=0;
+				var baixo=0;
+				var inicio = document.ultimosdigitos.length >= qtdigitos ? (document.ultimosdigitos.length - qtdigitos - 1) : 0;
+				for(var i =inicio; i < document.ultimosdigitos.length; i++) {
+					var tipo = '';
+					var digito = document.ultimosdigitos[i];
+					if (digito < 4) {
+						baixo++;
+					} else if (digito == 4 || digito == 5) {
+						meio++;
+					} else if (digito > 5) {
+						cima++;
+					}
+				}			
+			
+				var data = google.visualization.arrayToDataTable([
+					['Tipo', 'Quantidade'],
+					['Cima',     cima],
+					['Meio',      meio],
+					['Baixo',  baixo],
+				]);
+
+				var options = {
+					title: 'Ultimos ' + qtdigitos,
+					chartArea:{left:10,top:20,width:"100%",height:"100%"},
+					backgroundColor: '#FAFAFA'
+				};
+				
+				var chart = new google.visualization.PieChart(document.getElementById('pizza_ultimos'));
+				chart.draw(data, options);
+				
+			};
+			
+			function under4_desenhaColunaTotal() {
+				q = [0,0,0,0,0,0,0,0,0,0];
+				var totd=0;
+				for(var i =0; i < document.ultimosdigitos.length; i++) {
+					var digito = document.ultimosdigitos[i];
+					q[digito]++;
+					totd++;
+				}
+				for(var i =0; i <= 9; i++) q[i] = (q[i]/totd)*100;				
+			
+				var data = google.visualization.arrayToDataTable([
+					['Digito', 'Quantidade'],
+					['0',  q[0]],
+					['1',  q[1]],
+					['2',  q[2]],
+					['3',  q[3]],
+					['4',  q[4]],
+					['5',  q[5]],
+					['6',  q[6]],
+					['7',  q[7]],
+					['8',  q[8]],
+					['9',  q[9]],
+				]);
+
+				var options = {
+					title: 'Ultimos 25',
+					legend: { position: "none" },
+					backgroundColor: '#FAFAFA'
+				};
+				
+				var chart = new google.visualization.ColumnChart(document.getElementById('coluna_total'));
+				chart.draw(data, options);
+				
+			};
+			
+			function under4_desenhaColunaUltimos() {
+				var qtdigitos = 10;
+				q = [0,0,0,0,0,0,0,0,0,0];
+				var totd=0;
+				var inicio = document.ultimosdigitos.length >= qtdigitos ? (document.ultimosdigitos.length - qtdigitos - 1) : 0;
+				for(var i =inicio; i < document.ultimosdigitos.length; i++) {
+					var digito = document.ultimosdigitos[i];
+					q[digito]++;
+					totd++;
+				}
+				for(var i =0; i <= 9; i++) q[i] = (q[i]/totd)*100;				
+			
+				var data = google.visualization.arrayToDataTable([
+					['Digito', 'Quantidade'],
+					['0',  q[0]],
+					['1',  q[1]],
+					['2',  q[2]],
+					['3',  q[3]],
+					['4',  q[4]],
+					['5',  q[5]],
+					['6',  q[6]],
+					['7',  q[7]],
+					['8',  q[8]],
+					['9',  q[9]],
+				]);
+
+				var options = {
+					title: 'Ultimos '+ qtdigitos,
+					legend: { position: "none" },
+				};
+				
+				var chart = new google.visualization.ColumnChart(document.getElementById('coluna_ultimos'));
+				chart.draw(data, options);
+				
+			};
+			
+			function parimpar_desenhaLinhaDoTempo() {
+				var container = document.getElementById('linhadotempo');
+				var chart = new google.visualization.Timeline(container);
+				var dataTable = new google.visualization.DataTable();
+				dataTable.addColumn({ type: 'string', id: 'Nome1' });
+				dataTable.addColumn({ type: 'string', id: 'Nome2' });
+				dataTable.addColumn({ type: 'date', id: 'Inicio' });
+				dataTable.addColumn({ type: 'date', id: 'Fim' });
+
+				//para inicializar corretamente:
+				dataTable.addRow([ 'Par',  '-',    new Date(0,0,0,0,0,0),  new Date(0,0,0,0,0,1) ]);
+				dataTable.addRow([ 'Impar',  '-',    new Date(0,0,0,0,0,0),  new Date(0,0,0,0,0,1) ]);
+				
+				for(var i =0; i < document.ultimosdigitos.length; i++) {
+					var tipo = '';
+					var digito = document.ultimosdigitos[i];
+					if ((digito & 1) == 1) {
+						tipo = 'Impar';
+					} else  {
+						tipo = 'Par';
+					}
+					dataTable.addRow([ tipo,  digito.toString(),    new Date(0,0,0,0,0,i+1),  new Date(0,0,0,0,0,i+2) ]);
+				}
+							
+				var options = {
+					title:'teste',
+					timeline: { colorByRowLabel: true  },
+					tooltip: {trigger:'none'},
+					enableInteractivity:false,
+					backgroundColor: '#FAFAFA'					
+				};
+
+				chart.draw(dataTable, options);
+				
+			};
+			
+			function parimpar_desenhaPizza() {
+				var par=0;
+				var impar=0;
+				for(var i =0; i < document.ultimosdigitos.length; i++) {
+					var tipo = '';
+					var digito = document.ultimosdigitos[i];
+					if ((digito & 1) == 1) {
+						impar++;
+					} else {
+						par++;
+					}
+				}
+			
+				var data = google.visualization.arrayToDataTable([
+					['Tipo', 'Quantidade'],
+					['Par',     	par],
+					['Impar', 	impar],
+				]);
+
+				var options = {
+					title: '',
+					backgroundColor: '#FAFAFA'
+				};
+				
+				var chart = new google.visualization.PieChart(document.getElementById('pizza_total'));
+				chart.draw(data, options);
+				
+			};			
+		
+			function rodar() {
+				var tipo = document.tipo;
+				$('#controle').hide();
+				var contrato = $('#contrato').val();
+				var contratonome = $('#contrato :selected').text();
+				var maxdigitos =  parseInt($('#maxdigitos').val());
+				
+				$('#titulografico').html(contratonome);
+			
+				document.digitosanalizar = maxdigitos;
+				document.ultimosdigitos = [];
+			
+				document.ws = new WebSocket('wss://ws.binaryws.com/websockets/v3?app_id=1089');
+			
+				console.log('...');
+			
+				document.ws.onopen = function(evt) {
+					document.ws.send(JSON.stringify({ticks:contrato}));
+				};
+	
+				document.ws.onmessage = function(msg) {
+					var data = JSON.parse(msg.data);
+					//console.log('ticks update: %o', data);
+					var digito = -1;
+					if (data && data.tick) {
+						var num = data.tick.quote;
+						var ultimodigito = num.toFixed(2).toString();
+						digito = parseInt(ultimodigito.charAt(ultimodigito.length-1));
+						
+						var classecotacao = 'badge-secondary';
+						if (document.ultimacotacao) {
+							if (num > document.ultimacotacao) classecotacao = 'badge-success';
+							else if (num < document.ultimacotacao) classecotacao = 'badge-danger';
+						}
+						$('#cotacao').html(num.toFixed(2).toString());
+						$('#cotacao').removeClass('badge-secondary').removeClass('badge-success').removeClass('badge-danger');
+						$('#cotacao').addClass(classecotacao);
+						document.ultimacotacao = num;
+					}
+					
+					if (document.ultimosdigitos.length >= document.digitosanalizar) document.ultimosdigitos.shift();
+					document.ultimosdigitos.push(digito);
+					if (tipo == 'under4') {
+						under4_desenhaLinhaDoTempo();
+						under4_desenhaPizzaTotal();
+						under4_desenhaPizzaUltimos();
+						under4_desenhaColunaTotal();
+						under4_desenhaColunaUltimos();
+					} else if (tipo == 'parimpar') {
+						parimpar_desenhaLinhaDoTempo();
+						parimpar_desenhaPizza();
+						under4_desenhaColunaTotal();
+						under4_desenhaColunaUltimos();
+					}
+				};
+			};			
+		</script>
+	</body>
+</html>
